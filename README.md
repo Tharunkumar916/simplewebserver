@@ -52,7 +52,20 @@ Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
 </Body>
 </html>
 ```
+```
+class MyServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("GET request received ... ")
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(content.encode("utf-8"))
 
+print("This is my webserver, running at http://localhost:5000/")
+server_address = ('', 5000)
+httpd = HTTPServer(server_address, MyServer)
+httpd.serve_forever()
+```
 ## OUTPUT:
 ![alt text](image.png)
 
